@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hot Summer List</title>
+</head>
+<body>
+    <h1>Hot Summer List</h1>
+    <ul>
+        {% for item in shopping_list %}
+            <li>{{ item }}<a href="http://localhost:6677/receive-gift?gift=Iphone14"> Buy one, get one for free</a></li>
+        {% endfor %}
+    </ul>
+
+    <h1>Leave a Comment</h1>
+    <form action="/milktea-shop" method="post" enctype="multipart/form-data">
+        <textarea name="comment" rows="4" cols="50" placeholder="Type your comment here"></textarea>
+        <br>
+        <input type="url" name="link_url" placeholder="Enter a link (optional)">
+        <input type="text" name="link_text" placeholder="Link text (optional)">
+        <br>
+        <input type="file" name="image" accept="image/*">
+        <br>
+        <input type="submit" value="Send">
+    </form>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for entry in comments %}
+        <li>
+            <p>{{ entry[0] }}</p>
+            {% if entry[1] %}
+                <a href="{{ entry[1] }}">
+                    {% if entry[2] %}
+                        {{ entry[2] }}
+                    {% else %}
+                        Link
+                    {% endif %}
+                </a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
